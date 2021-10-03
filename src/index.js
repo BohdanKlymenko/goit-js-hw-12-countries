@@ -7,7 +7,7 @@ import { Notify} from 'notiflix';
 
 const refs = {
   searchQuery: document.querySelector('#input'),
-  countryList: document.querySelector('.form-list'),
+  countryList: document.querySelector('.js-articles'),
   wrapper: document.querySelector('.wrapper'),
 };
 
@@ -15,6 +15,7 @@ refs.searchQuery.addEventListener('input', debounce(onSearch, 500));
 
 function onSearch(e) {
   refs.countryList.innerHTML = '';
+  refs.wrapper.innerHTML = '';
   const userRequest = e.target.value.trim();
   if (userRequest.length < 1) return;
   console.log(userRequest);
@@ -26,7 +27,8 @@ function onSearch(e) {
     if (country.length === 1) {
       return (refs.wrapper.innerHTML = countryCardTpl(...country));
     }
-    Notify.warning('Некорректный ввод. Повторите попытку');
-    // alert('Некорректный ввод. Повторите попытку');
+    Notify.warning(
+      'Найдено слишком много совпадений. Пожалуйста, введите более конкретный запрос!',
+    );
   });
 }
