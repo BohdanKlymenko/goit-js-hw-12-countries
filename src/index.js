@@ -1,12 +1,13 @@
 import './sass/main.scss';
 import fetchCountries from './js/fetchCountries';
 import countryList from './templates/country-list.hbs';
-import countryCard from './templates/country-card.hbs';
+import countryCardTpl from './templates/country-card.hbs';
 import debounce from 'lodash.debounce';
+import { Notify} from 'notiflix';
 
 const refs = {
   searchQuery: document.querySelector('#input'),
-  countryList: document.querySelector('.form__list'),
+  countryList: document.querySelector('.form-list'),
   wrapper: document.querySelector('.wrapper'),
 };
 
@@ -23,8 +24,9 @@ function onSearch(e) {
       return (refs.countryList.innerHTML = countryList(country));
     }
     if (country.length === 1) {
-      return (refs.wrapper.innerHTML = countryCard(...country));
+      return (refs.wrapper.innerHTML = countryCardTpl(...country));
     }
-    alert('НЕКОРРЕКТНЫЙ ВВОД');
+    Notify.warning('Некорректный ввод. Повторите попытку');
+    // alert('Некорректный ввод. Повторите попытку');
   });
 }

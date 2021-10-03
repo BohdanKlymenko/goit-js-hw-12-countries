@@ -2,12 +2,13 @@
   <h1>{{name.common}}</h1>
 </div>
 <div class='country-info'>
-  <ul>
-    <li>Capital: {{capital}}</li>
-    <li>Region: {{region}}</li>
+  <ul class="form-country-info">
+    <li class="list-style">Capital: {{capital}}</li>
+    <li class="list-style">Region: {{region}}</li>
+    <li class="list-style list-style--languages">Languages:
     <ul>
       {{#each languages}}
-      <li>{{this}}</li>
+      <li class="list-style">{{this.name}}</li>
       {{/each}}
     </ul>
   </ul>
